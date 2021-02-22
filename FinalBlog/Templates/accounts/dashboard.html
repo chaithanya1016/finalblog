@@ -1,0 +1,64 @@
+{% extends 'webapp/base.html' %}
+{% block content%}
+        {% block side %}
+        <div class="col-sm-2 my-5 text-center" >
+            <h4 class="my-5">Profile</h4>
+            {% for group in groups %}
+                <p> {{ group.name }} </p>
+            {% endfor %}
+            <h6> {{full_name}} </h6>
+             {{post.author.id}}   {{article.author.id}}   {{author.id}}
+        </div>
+        {% endblock side %}
+
+      <div class='col-sm-10'>
+          <a href="{% url 'addpost' %}" class="btn btn-outline-success">Add Post</a>
+        <h4 class="text-center alert alert-info mt-3">Show Post Information</h4>
+
+          {% if article %}
+            <table class="table table-hover" >
+               <thead>
+                  <tr class="text-center">
+                     <th scope="col" style="width:2%" >ID</th>
+                     <th scope="col" style="width:28%" >Title</th>
+                     <th scope="col" style="width:55%" >Description</th>
+                     <th scope="col" style="width:15%" >Update/Delete</th>
+                  </tr>
+               </thead>
+               <tbody>
+                 {% for post in article %}
+                   <tr>
+                     <th scope="row">{{post.id}}</th>
+                     <td> {{post.title}} </td>
+                     <td> {{post.body|safe|truncatewords:25}} </td>
+                     <td class="text-center">
+
+                      
+                        {% if user.id == post.author.id %}
+                    
+                        <a href="{% url 'updatepost' post.id %}" class="btn btn-outline-warning btn-sm">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
+
+                        {% else %}
+                          <p>Not Allowed</p>
+                        {% endif %}
+
+                        
+
+                        {% if perms.webapp.delete_article %}
+                        <form action="{% url 'deletearticle' post.id %}" method="post" class="d-inline">
+                          {% csrf_token %}  
+                          <input type="submit" class="btn btn-outline-danger btn-sm"  value="Delete">
+                        </form>
+                        {% endif %}
+
+                     </td>
+                   </tr>
+                   {% endfor %}
+               </tbody>
+            </table>
+
+          {% else %}
+             <p class="text-center alert alert-warning">Table Data Not Found</p>
+          {% endif %}
+      </div>
+    {% endblock content%}

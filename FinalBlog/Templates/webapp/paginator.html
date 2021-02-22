@@ -1,0 +1,13 @@
+<div class="paginator text-right">
+  <span>
+    {%if page.has_previous %}
+    <a class="btn btn-success" href="?page={{page.previous_page_number}}">Previous</a>
+    {%endif%}
+  </span>
+    <span> page {{page.number}} of {{page.paginator.num_pages}} </span>
+    <span>
+      {%if page.has_next %}
+      <a class="btn btn-success" href="?page={{page.next_page_number}}">Next</a>
+      {%endif%}
+    </span>
+</div>

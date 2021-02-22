@@ -1,0 +1,54 @@
+    {% include 'webapp/base.html' %}
+
+<div class='container' >
+
+<form action="{% url 'searchposts' %}" method="GET" value="{{request.GET.q}}">
+  <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search Posts"/>
+  <input class="btn btn-outline-success my-2 my-sm-0" type="submit" name="submit" value="Search"/>
+</form>
+
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+    <h2>Your Searching for '<b>{{ request.GET.q }}</b>' </h2>
+
+</div>
+
+  <div class="container my-5">
+    <div class="border-bottom pb-3 px-2 d-flex justify-content-between">
+      <div class="row">
+
+      {% for post in results %}
+
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+            
+              <div class="col-md-4 p-4">
+                <div class="border" style="box-shadow: 0 0  20px #eee;">
+                  <div class="d-flex p-3 align-items-center">
+
+                      <div class="mt-2">
+                        <h6 class="card-title"> <a href="{{ post.get_absolute_url }}"> {{post.title}}  </a> </h6>
+
+                        <a href="#" class="text-dark" style="line-height: .8; font-weight: 200;"> <i class="fa fa-user-circle" aria-hidden="true"></i> {{post.author}} </a> |
+                        <small> <i class="fa fa-calendar-plus-o " aria-hidden="true"></i> {{ post.publish }} </small>
+
+                      </div>
+                  </div>
+                  <img class="w-100" src="{{ post.article_image.url }}" alt="">  
+                </div>
+              </div><!-- close existing row and open another one-->      
+            
+      {% endfor %}
+            
+      </div>
+   </div>
+  </div>
+
+
+            
+
+
+{% else %}
+No search results for this query
+{% endif %}
+{% endif %}

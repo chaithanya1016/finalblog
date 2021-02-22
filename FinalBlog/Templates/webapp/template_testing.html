@@ -1,0 +1,55 @@
+{% extends 'webapp/base.html' %}
+    {% load static %}
+    
+    {% load blog_tags %}
+
+    {% block content%}
+
+        <div>
+            <h3 class="" align='center'> Article List</h3>
+          <div class="container my-5">
+            <div class="border-bottom pb-3 px-2 d-flex justify-content-between">
+              <div class="d-flex align-items-center">
+                <a href="#" style="color: #9B5DE5; font-size: 20px;" class="text-capitalize font-weight-bold mb-0">Latest Blog</a>
+              </div>
+                 <form action="{% url 'searchposts' %}" method="GET" value="{{request.GET.q}} class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search Here...!!" name="q" value="{{request.GET.q}}" aria-label="Search">  
+                </form>
+            </div>
+
+
+          <div class="row">
+            
+            {% for post in article %}
+              
+
+              <div class="col-md-4 p-4">
+                <div class="border" style="box-shadow: 0 0  20px #eee;">
+                  <div class="d-flex p-3 align-items-center">
+                      <a href="#"><img src="{{ user.author.profile_picture.url }}" class="mr-3 rounded-circle" width="50px" alt=""></a>
+                      <div class="mt-2">
+                        <a href="#" class="d-block text-dark" style="line-height: .8; font-weight: 600;"> {{post.author}} </a>
+                        <small> {{ post.publish }}  in <a href="#" style="color: #9B5DE5;"> {{ post.category }} </a></small>
+                        <h6 class="card-title"> <a href="{{ post.get_absolute_url }}"> {{post.title}}  </a> </h6>
+
+                      </div>
+                  </div>
+                  <img class="w-100" src="{{ post.article_image.url }}" alt="">  
+                </div>
+              </div><!-- close existing row and open another one-->      
+        
+            
+           {% endfor %}
+            <div class='container'>
+                {%include 'webapp/paginator.html' with page=article %}
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+        
+
+    {% endblock content%}     

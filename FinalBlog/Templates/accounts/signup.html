@@ -1,0 +1,12 @@
+{% extends "webapp/base.html" %}
+    {% block content %}
+        <div class="container">
+            <h3 class="my-5" align='center'> Sign Up Page</h3>
+
+            <form method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input class='btn btn-primary btn-sm' type="submit" value="Signup Here">
+            </form>
+        </div>
+    {% endblock content %}
