@@ -50,13 +50,22 @@
                         {{ profile_form.location|as_crispy_field }}
                     </div>
 
-                    <div type='text' class="col-4" id='picke'>
+                    <div type='text' class="col-4" id='datepicker'>
                         {{ profile_form.birth_date|as_crispy_field }}
                     </div>
                 </div>
-                <button type="submit">Save changes</button>
+                <button class="btn btn-warning" type="submit">Save changes</button>
             </form>
         </div>
     {% endblock content %}
 
 
+   <script>
+    $('#datepicker').datepicker({
+        numberOfMonths:1,
+        changeYear:true,
+        changeMonth:true,
+        minDate: new Date(2010,9,9),
+        maxDate: new Date(2021,0,5)
+    })
+</script>

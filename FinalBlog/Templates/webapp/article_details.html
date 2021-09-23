@@ -3,30 +3,13 @@
     {% block content%}
     {% load blog_tags %}
 
-            <div align='center'>  
-            <h3>
-                {% for user in user_profile %}
-                    {{ user.location }}
-                    {{ user.profile_picture.url }}
-                {% endfor %}
-            </h3>
-            </div>
+            
 
         <div>
 
             <div class='container'>  
-            <h3 class="" align='center'> Article Details</h3>   <h1> {{user}}  </h1>
-            <p> {{ userprofile.location }} </p>
-            <p> {{ user.userprofile.location }} </p>
 
-            <h2>{{ user.get_full_name }}</h2>
-            <ul>
-                <li>Username: {{ user.username }}</li>
-                <li>Location: {{ user.profile.location }}</li>
-                <li>Birth Date: {{ user.profile.birth_date }}</li>
-            </ul>
 
-        
             <h3>{{article.title}}    
                     {% if user.id == article.author.id %}    
                         <a href="{% url 'updatepost' article.id %}" class="btn btn-warning btn-sm">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a>
@@ -46,13 +29,14 @@
                     <small class="date-read text-muted"> <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> {{article.publish}} | {{article.read}} mins <i class="fa fa-star" aria-hidden="true"></i> </small>
                 </div>
             </div>
-
-            <small class="text-muted"> {{article.author}} | {{article.publish}} | {{article.read}}mins </small>
-            <h6>Category : {{ article.category }} </h6>
-            <h6> {{article.overview}} </h6>
+            
+            
+            <p> {{article.overview|safe}} </p>
             <img class="card-img-top image-thumbnail" src="{{article.article_image.url}}" alt="Card image cap">
-            <p> {{article.article_image.url}} </p>
             <p>{{article.body|safe}} </p> 
+
+
+            
             <div class="col-md-8 card mb-4  mt-3 ">
             <div class="card-body">
                 <!-- comments -->

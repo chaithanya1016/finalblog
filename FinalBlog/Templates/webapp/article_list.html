@@ -1,7 +1,15 @@
 {% extends 'webapp/base.html' %}
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="jqueryui/jquery-ui.css">
+    <link rel="stylesheet" href="jqueryui/jquery-ui.structure.css">
+    <link rel="stylesheet" href="jqueryui/jquery-ui.theme.css">
+
     {% load static %}
     
     {% load blog_tags %}
+
+
+    
 
     
     {% block content%}
@@ -10,14 +18,11 @@
             <h4>Post tagged with {{ tag.name }} </h4>
         {% endif %} 
 
+    
+
+
         <div>
-            <h3 class="" align='center'> Article List</h3>
-
-
-
-            
-
-
+        
 
           <div class="container my-5">
             <div class="border-bottom pb-3 px-2 d-flex justify-content-between">
@@ -27,8 +32,11 @@
                  
             </div>
 
+    
 
-          <div class="container my-5">
+
+
+  <div class="container my-5">
     <div class="border-bottom pb-3 px-2 d-flex justify-content-between">
       <div class="row">
 
@@ -66,4 +74,19 @@
             {% include 'webapp/sidebar.html' %}
         {% endblock sidebar %}
     </div>
+
+
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="jqueryui/jquery-ui.js" type="text/javascript"></script>
+
+<script>
+    $('#datepicker').datepicker({
+        numberOfMonths:1,
+        changeYear:true,
+        changeMonth:true,
+        minDate: new Date(2010,9,9),
+        maxDate: new Date(2021,0,5)
+    })
+</script>
 

@@ -1,23 +1,16 @@
  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">  -->
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand" href="/">Mini Blog</a>
+  <a class="navbar-brand" href="/">Tech Soul</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'article_list' %}">Articles</a>
-      </li>
+      
 
-      <li class="nav-item">
-        <a class="nav-link"  href="{% url 'updateprofile' %}">Update Profile</a>
-      </li>
+      
     </ul>
 
     <ul class="navbar-nav navbar-right">
@@ -25,6 +18,14 @@
       {% if request.user.is_authenticated %}
       <li class="nav-item">
         <a class="nav-link"  href="{% url 'dashboard' %}">Dashboard</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'addpost' %}"> Add Post </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"  href="{% url 'updateprofile' %}">Update Profile</a>
       </li>
 
       <li class="nav-item">
@@ -40,16 +41,15 @@
       <li class="nav-item navbar-right">
         <a class="nav-link ml-auto" href="{% url 'login' %}">Login</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'addpost' %}"> Add Post </a>
-      </li>
+     
 
       {% endif %}
 
+<!-- 
       <li class="nav-item">
         <a class="nav-link"  href="{% url 'searchposts' %}">Search</a>
-      </li>
+      </li>  
+      --> 
 
       <form action="{% url 'searchposts' %}" method="GET" value="{{request.GET.q}}" class="form-inline my-2 my-lg-0">
         <input type="search" name="q" value="{{request.GET.q}}" placeholder="Search Here...!!"  class="form-control mr-sm-2">  
