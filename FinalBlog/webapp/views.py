@@ -10,7 +10,6 @@ from django.db.models import Q
 
 #Article List
 def article_list(request, tag_slug=None):
-    
     try:
         article = Article.objects.all()
     except:
