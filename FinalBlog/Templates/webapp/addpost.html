@@ -7,8 +7,9 @@
          <h3 class="my-5">Dashboard/Add Post</h3>
          <form method="POST" enctype="multipart/form-data"> 
             {% csrf_token %}
+            {{ form|media }
             {{ form|crispy }}
-            <button type="submit" class="btn btn-primary">Add Article </button>
+            <button type="submit" class="btn btn-primary">Add Post </button>
          </form>
 
             <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
