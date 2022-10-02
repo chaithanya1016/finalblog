@@ -109,33 +109,16 @@ class SearchResultsView(generic.ListView):
 
 
 
-def searc(request):
-    if 'q' in request.GET:
-        q = request.GET['q']
-        article =Article.objects.filter(title__icontains=q)
-    else:
-        article = Article.objects.all()
-    context = {'article':article}
-    return render(request, 'webapp/article_list.html', context)
-
-
 def searchposts(request):
     if request.method == 'GET':
         query= request.GET.get('q')
-
         submitbutton= request.GET.get('submit')
-
         if query is not None:
             lookups= Q(title__icontains=query) | Q(author__username__icontains=query)
-
             results= Article.objects.filter(lookups).distinct()
-
             context={'results': results, 'submitbutton': submitbutton}
-            
             return render(request, 'webapp/search.html', context)
-
         else:
             return render(request, 'webapp/search.html')
-
     else:
         return render(request, 'webapp/search.html')
